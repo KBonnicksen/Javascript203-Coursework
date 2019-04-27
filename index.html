@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Area and Perimeter</title>
+ 
+    <style>
+        body{
+            background-color: lightpink;
+            box-sizing: border-box;
+        }
+        h1{
+            border-bottom: solid black 2px;
+            padding-bottom: 3%;
+        }
+        input, button{
+            border: solid black 1px;
+        }
+        input{
+            padding-left: 3px;
+        }
+        canvas{
+            float: right;
+            padding-right: 25%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>This page calculates the area and perimeter of a given rectangle</h1>
+
+    <label for="width">Enter rectangle width</label>
+    <input type="text" id="width">
+    <br><br>
+
+    <label for="length">Enter rectangle length</label>
+    <input type="text" id="length">
+    <br><br>
+
+    <button type="button" onclick="calculatePerimeter(); calculateArea();">calculate area and perimeter</button>
+    <br><br>
+
+    <label for="area">Area:</label>
+    <input type="text" id="area"> 
+    <br><br>
+    
+    <label for="perimeter">Perimeter:</label>
+    <input type="text" id="perimeter"> 
+
+    <canvas id="drawRectangle" width="300" height="300"
+            style="border:black 2px;"></canvas>
+   
+   <script>
+         function calculatePerimeter(){
+            let width = document.getElementById("width").value;
+
+            if(isNaN(width)){
+                //QUESTION!! 
+                //Why here when given an invalid width does it not 
+                //change the area's value to "badInput" like everything else?
+                badInput = "Please enter a number";
+                document.getElementById("width").value=badInput;
+                document.getElementById("area").value=badInput;
+                document.getElementById("perimeter").value= badInput;
+            }
+            else{
+                let length = document.getElementById("length").value;
+                let perimeter = 2 * width + 2 * length;
+                document.getElementById("perimeter").value=perimeter;
+
+                let c = document.getElementById("drawRectangle");
+                let ctx = c.getContext("2d");
+                ctx.rect(0, 0, 3 * length, 3 * width);
+                ctx.stroke();
+            }
+        } 
+
+        function calculateArea(){
+            let width = document.getElementById("width").value;
+            let length = document.getElementById("length").value;
+            let area = width *  length;
+            document.getElementById("area").value=area;
+
+            if(isNaN(length)){
+                badInput = "Please enter a number";
+                document.getElementById("length").value=badInput;
+                document.getElementById("area").value=badInput;
+                document.getElementById("perimeter").value= badInput;
+            }
+        }
+        
+    </script>
+</body>
+</html>
